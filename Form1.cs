@@ -17,7 +17,7 @@ namespace Proje_Bilgi_Yarışması
             InitializeComponent();
         }
 
-        uint soruNo = 0, dogru = 0, yanlis = 0;
+        uint soruNo = 0, dogru = 0, yanlis = 0, sayac;
         string key;
 
         private void btnNext_Click_1(object sender, EventArgs e)
@@ -37,6 +37,11 @@ namespace Proje_Bilgi_Yarışması
             btnB.BackColor = Color.White;
             btnC.BackColor = Color.White;
             btnD.BackColor = Color.White;
+
+            sayac = 30;
+            label8.Text = sayac.ToString();
+            progressBar1.Value = 30;
+            timer1.Start();
 
 
             if (soruNo == 1)
@@ -69,6 +74,25 @@ namespace Proje_Bilgi_Yarışması
                 btnD.Text = "cuma";
                 key = btnD.Text;
             }
+            if (soruNo == 4)
+            {
+                richtxtBox.Text = "Irkçı Ceyhun Türkmen sıradan bir günde en çok kullandığı kelime aşağıdakilerden hangisidir ?";
+                btnA.Text = "Araplara vurmam";
+                btnB.Text = "Odadaki çoçuğu dövdüm";
+                btnC.Text = "Camiye gitmem abi";
+                btnD.Text = "7.5 cm uzunmu beyler";
+                key = btnC.Text;
+            }
+            if (soruNo == 5)
+            {
+                richtxtBox.Text = "Sıradan bir yüksel alkış günde kaç kez berbere vurdurur ?";
+
+                btnA.Text = "31";
+                btnB.Text = "69";
+                btnC.Text = "Ben vurdurmam abi";
+                btnD.Text = "3";
+                key = btnC.Text;
+            }
         }
 
         private void btnA_Click(object sender, EventArgs e)
@@ -78,6 +102,7 @@ namespace Proje_Bilgi_Yarışması
             btnC.Enabled = false;
             btnD.Enabled = false;
             btnNext.Enabled = true;
+            timer1.Stop();
 
             if (btnA.Text == key)
             {
@@ -106,7 +131,7 @@ namespace Proje_Bilgi_Yarışması
                     btnD.BackColor = Color.Green;
                 }
             }
-            if(soruNo == 3) { btnNext.Text = "Bitti !"; btnNext.Enabled = false; MessageBox.Show(soruNo + " Soruda " + dogru + " Doğru " + yanlis + " Yanlış"); }
+            if (soruNo == 5) { btnNext.Text = "Bitti !"; btnNext.Enabled = false; MessageBox.Show(soruNo + " Soruda " + dogru + " Doğru " + yanlis + " Yanlış"); }
         }
 
         private void btnB_Click(object sender, EventArgs e)
@@ -116,6 +141,7 @@ namespace Proje_Bilgi_Yarışması
             btnC.Enabled = false;
             btnD.Enabled = false;
             btnNext.Enabled = true;
+            timer1.Stop();
 
             if (btnB.Text == key)
             {
@@ -145,7 +171,22 @@ namespace Proje_Bilgi_Yarışması
                 }
 
             }
-            if (soruNo == 3) { btnNext.Text = "Bitti !"; btnNext.Enabled = false; MessageBox.Show(soruNo + " Soruda " + dogru + " Doğru " + yanlis + " Yanlış"); }
+            if (soruNo == 5) { btnNext.Text = "Bitti !"; btnNext.Enabled = false; MessageBox.Show(soruNo + " Soruda " + dogru + " Doğru " + yanlis + " Yanlış"); }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            progressBar1.Value -= 1;
+            sayac--;
+            label8.Text = sayac.ToString();
+            if (progressBar1.Value == 0)
+            {
+                btnA.Enabled = false;
+                btnB.Enabled = false;
+                btnC.Enabled = false;
+                btnD.Enabled = false;
+                timer1.Stop(); MessageBox.Show("Süreniz Bitii !");
+            }
         }
 
         private void btnC_Click(object sender, EventArgs e)
@@ -155,6 +196,7 @@ namespace Proje_Bilgi_Yarışması
             btnC.Enabled = false;
             btnD.Enabled = false;
             btnNext.Enabled = true;
+            timer1.Stop();
 
             if (btnC.Text == key)
             {
@@ -183,7 +225,7 @@ namespace Proje_Bilgi_Yarışması
                     btnD.BackColor = Color.Green;
                 }
             }
-            if (soruNo == 3) { btnNext.Text = "Bitti !"; btnNext.Enabled = false; MessageBox.Show(soruNo + " Soruda " + dogru + " Doğru " + yanlis + " Yanlış"); }
+            if (soruNo == 5) { btnNext.Text = "Bitti !"; btnNext.Enabled = false; MessageBox.Show(soruNo + " Soruda " + dogru + " Doğru " + yanlis + " Yanlış"); }
         }
 
         private void btnD_Click(object sender, EventArgs e)
@@ -193,6 +235,7 @@ namespace Proje_Bilgi_Yarışması
             btnC.Enabled = false;
             btnD.Enabled = false;
             btnNext.Enabled = true;
+            timer1.Stop();
 
             if (btnD.Text == key)
             {
@@ -221,9 +264,7 @@ namespace Proje_Bilgi_Yarışması
                     btnC.BackColor = Color.Green;
                 }
             }
-            if (soruNo == 3) { btnNext.Text = "Bitti !"; btnNext.Enabled = false; MessageBox.Show(soruNo + " Soruda " + dogru + " Doğru " + yanlis + " Yanlış"); }
+            if (soruNo == 5) { btnNext.Text = "Bitti !"; btnNext.Enabled = false; MessageBox.Show(soruNo + " Soruda " + dogru + " Doğru " + yanlis + " Yanlış"); }
         }
-
-
     }
 }
